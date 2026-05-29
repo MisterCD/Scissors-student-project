@@ -1,0 +1,64 @@
+<?php
+
+
+
+class Packfolder{
+
+    public $arrayCommand = [];
+    public function __construct(){
+
+    }
+    public function addCommand(string $name, $callback){
+        $this->arrayCommand[$name] = $callback;
+    }
+}
+
+function doCommand(string $command){
+        $log = shell_exec("powershell.exe -Command \"".$command."\"");
+        return $log;
+}
+
+$argcount = 0;
+
+function arg_next(int $num = 1){
+    global $argcount, $argv;
+    $argcount += $num;
+    return $argv[$argcount];
+}
+
+$packfolder = new Packfolder();
+
+
+require "commands.php";
+
+init($packfolder);
+
+for($i = 1; $i < $argc; $i++){
+    $str = $argv[$i];
+    $argcount = $i;
+    if(!empty($packfolder->arrayCommand[$str])){
+        $packfolder->arrayCommand[$str]();
+    }else{
+        print "Неизвестная команда: ".$str;
+        break;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
