@@ -22,11 +22,11 @@
 <section class="section">
   <div class="container">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px;">
-      <x-rewiew-filter :types="$types"/>
+      <x-filter :type="'rewiews'" :types="$types"/>
     </div>
     <div class="reviews-page-grid">
       @foreach ($rewiews as $rewiew)
-        @if($rewiew->status != 0)
+        @if($rewiew->allowed != 0)
           <x-rewiew-card :rewiew="$rewiew"/>
         @endif
       @endforeach
@@ -40,6 +40,7 @@
 @endsection
 @section("scripts")
   <script>
+    
     star5.onclick = () => {
         stars.value = 5;
     }

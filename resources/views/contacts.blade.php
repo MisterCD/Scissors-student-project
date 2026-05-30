@@ -83,7 +83,7 @@
           <div style="font-size:2rem;margin-bottom:10px;">✂</div>
           <h3 style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:8px;">Хотите записаться?</h3>
           <p style="font-size:0.85rem;color:rgba(255,255,255,0.5);margin-bottom:18px;">Онлайн-запись — быстро и удобно, скидка 15%</p>
-          <a href="booking.html" class="btn btn--gold btn--block">Записаться онлайн</a>
+          <a href="{{route("booking")}}" class="btn btn--gold btn--block">Записаться онлайн</a>
           <a href="tel:+79001234567" class="btn btn--outline-white btn--block" style="margin-top:10px;">📞 Позвонить</a>
         </div>
       </div>

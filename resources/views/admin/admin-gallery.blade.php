@@ -67,28 +67,8 @@
     </div>
 
     
-    <div class="adm-card">
-      <div class="adm-card__head"><span class="adm-card__title">Добавить по ссылке</span></div>
-      <div class="adm-card__body">
-        <form method="POST" action="{{ route('admin:addImageUrl') }}" class="adm-form">
-          @csrf
-          <div class="adm-field">
-            <label>Тип изображения</label>
-            <select name="type_id" required>
-              <option value="">— Выберите тип —</option>
-              @foreach($types as $t)
-                <option value="{{ $t->id }}">{{ $t->name }}</option>
-              @endforeach
-            </select>
-          </div>
-          <div class="adm-field">
-            <label>URL изображения</label>
-            <input type="url" name="path" required placeholder="https://example.com/photo.jpg">
-          </div>
-          <button type="submit" class="btn-adm btn-adm--primary">+ Добавить ссылку</button>
-        </form>
-      </div>
-    </div>
+    
+  
   </div>
 </div>
 @endsection

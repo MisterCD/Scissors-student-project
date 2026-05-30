@@ -24,24 +24,7 @@
 
 <section class="section">
   <div class="container">
-    <div class="services-filter">
-      <a href = "{{route("menu")}}" class="filter-btn">Все категории</a>
-      @foreach ($types as $type)
-         <a href = "{{route("menu", ["type" => $type->id])}}" class="filter-btn">{{$type->name}}</a>
-      @endforeach
-      <form action="{{ route("menu") }}">
-      <select class="filter-select">
-        <option>Сортировать: по умолчанию</option>
-        <option>По цене: возрастание</option>
-        <option>По цене: убывание</option>
-        <option>По популярности</option>
-      </select>
-      <select class="filter-select">
-        <option>Мастер:все</option>
-        
-      </select>
-      </form>
-    </div>
+     <x-filter :type="'products'" :types="$types" :Workers="$Workers"/>
      <h2 style="font-family:var(--font-display);font-size:1.1rem;color:var(--charcoal);margin-bottom:16px;padding-top:8px;">Все категории</h2>
     <div class="services-list" style="margin-bottom:36px;">
       @foreach ($Products as $product)
@@ -49,7 +32,7 @@
       @endforeach
     </div>
     <div class="section__cta" style="margin-top:48px;">
-      <a href="booking.html" class="btn btn--primary" style="font-size:1rem;padding:16px 36px;">Записаться онлайн → скидка 15%</a>
+      <a href="{{route("booking")}}" class="btn btn--primary" style="font-size:1rem;padding:16px 36px;">Записаться онлайн → скидка 15%</a>
     </div>
   </div>
 </section>
@@ -61,7 +44,7 @@
       <p class="cta-section__sub">Позвоните нам — поможем подобрать услугу под ваш запрос</p>
     </div>
     <div class="cta-section__actions">
-      <a href="booking.html" class="btn btn--white">Записаться онлайн</a>
+      <a href="{{route("booking")}}" class="btn btn--white">Записаться онлайн</a>
       <a href="tel:+79001234567" class="btn btn--outline-white">📞 Позвонить</a>
     </div>
   </div>

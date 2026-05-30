@@ -177,10 +177,10 @@
     globalThis.stars = 0;
     globalThis.starsCount = {{ $stars->count() }}
     @foreach( $stars as $star )
-      stars += {{ $star }}
+      stars += {{ $star->stars }}
     @endforeach
     const rating = document.getElementById("rating");
-    rating.textContent = "★" + (starsCount / stars)
+    rating.textContent = "★" + (stars / starsCount)
   </script>
 @endsection
 

@@ -87,8 +87,9 @@ class RegisterController extends Controller
         
         $rewiews = DB::table("rewiews")
             ->join("product", "rewiews.product_id", "=", "product.id")
+            ->join("users", "rewiews.user_id", "=", "users.id")
             ->where("rewiews.user_id", $userId)
-            ->select("rewiews.*", "product.name as product_name")
+            ->select("rewiews.*", "product.name as product_name", "users.username", "users.avatar")
             ->orderBy("rewiews.date", "desc")
             ->get();
         $notifications = DB::table("notifications")->where("user_id", $userId)->get();
@@ -305,7 +306,7 @@ class RegisterController extends Controller
         $id = session("user_id");
         Rewiew::validate_rule();
         $result = Rewiew::validate();
-        $result["status"] = 0;
+        $result["allowed"] = 0;
         $result["user_id"] = $id;
         $result["date"] = Date::now();
         Rewiew::insert($result);

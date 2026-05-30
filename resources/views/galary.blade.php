@@ -15,21 +15,30 @@
   <p class="page-hero__sub">Фотографии выполненных работ и интерьера нашего салона</p>
 </div></section>
 
+@php
+$count = 0;
+@endphp
+
 <section class="section">
   <div class="container">
-    <div class="services-filter" style="margin-bottom:32px;">
-      <a href = "{{route("menu")}}" class="filter-btn">Все категории</a>
-      @foreach ($types as $type)
-         <a href = "{{route("menu", ["type" => $type->id])}}" class="filter-btn">{{$type->name}}</a>
-      @endforeach
-    </div>
+    <x-filter :type="'galary'" :types="$types"/>
     <div class="gallery-grid">
       @foreach ($images as $image)
-        <x-image-card :image="$image"/>
+        <x-image-card :image="$image" :count="$count"/>
+        @php
+          if($count == 3){
+           $count = 0;
+          }else{
+           $count++;
+          }
+        @endphp
       @endforeach
     </div>
     <div class="section__cta">
-      <a href="booking.html" class="btn btn--primary">Хочу такой же результат — Записаться</a>
+      <a href="{{route("booking")}}" class="btn btn--primary">Хочу такой же результат — Записаться</a>
+    </div>
+    <div>
+      {{ $images->links("pagination.pagination") }}
     </div>
   </div>
 </section>

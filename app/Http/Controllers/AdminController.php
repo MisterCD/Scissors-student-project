@@ -466,7 +466,7 @@ class AdminController extends Controller
 
         if ($id === null || $role === null) return redirect()->route("admin:admin", ["type" => "users"])->with("error_message", "Не переданы параметры");
 
-        $statusMap = ["user" => USER_STATUS_USER, "master" => USER_STATUS_MASTER, "admin:admin" => USER_STATUS_ADMIN];
+        $statusMap = ["user" => USER_STATUS_USER, "master" => USER_STATUS_MASTER, "admin" => USER_STATUS_ADMIN];
 
         if (!isset($statusMap[$role])) return redirect()->route("admin:admin", ["type" => "users"])->with("error_message", "Неверная роль");
 

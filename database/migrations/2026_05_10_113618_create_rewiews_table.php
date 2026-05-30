@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer("stars");
             $table->string("description");
             $table->timestamp("date");
-            $table->string("status");
+            $table->boolean("allowed");
         });
     }
 

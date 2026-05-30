@@ -14,17 +14,20 @@
         <div class="cabinet-user__name">{{ $user->username }}</div>
         <div class="cabinet-user__email">{{ $user->email }}</div>
       </div>
-      <nav class="cabinet-nav">
-        <a href="#booking_active">🗓 Мои записи</a>
-        <a href="#booking_history">📋 История посещений</a>
-        <a href="#notifications">🔔 Уведомления</a>
-        <a href="#rewiews">⭐ Мои отзывы</a>
-        <a href="#profile">👤 Профиль</a>
-        <a href="{{ route("logoutUser") }}" style="margin-top:12px;color:var(--error);">→ Выйти</a>
+      <nav class="cabinet-nav" style="display: flex; flex-direction: column; gap:10px; align-items: center; justify-content:center;">
+        <button class="filter-btn" >🗓 Мои записи</button>
+        <button class="filter-btn" >⭐ Мои отзывы</button>
+        <button class="filter-btn" >📋 История посещений</button>
+        <button class="filter-btn" >🔔 Уведомления </button>
+        <button class="filter-btn" >👤 Профиль</button>
+        <a class="filter-btn" href="{{ route("logoutUser") }}" style="margin-top:12px;color:var(--error);">→ Выйти</a>
+        @if ($user->status_id == 2 || $user->status_id == 1)
+         <a class="filter-btn" href="{{ route("admin:admin") }}">Админ</a>
+        @endif
       </nav>
     </div>
     <div class="cabinet-main">
-      <div class="cabinet-card" id="booking_active">
+      <div class="cabinet-card active-section" id="booking_active" >
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
           <h2 class="cabinet-card__title" style="margin-bottom:0;">Предстоящие записи</h2>
           <a href="{{ route("booking") }}" class="btn btn--sm btn--primary">+ Новая запись</a>
@@ -62,14 +65,14 @@
         @endif
         @endforeach
       </div>
-      <div class="cabinet-card">
+      <div class="cabinet-card active-section" style="display: none;">
         <h2 class="cabinet-card__title">Отзывы</h2>
       @foreach ($rewiews as $rewiew)
         <x-rewiew-card :rewiew="$rewiew"/>
       @endforeach
       </div>
       
-      <div class="cabinet-card" id="booking_history">
+      <div class="cabinet-card active-section" id="booking_history" style="display: none;">
         <h2 class="cabinet-card__title">История посещений</h2>
         @foreach ($bookings as $booking)
         <div class="booking-history-item">
@@ -87,13 +90,13 @@
                       Потверждена
                   </span>
             @endif
-          <a href="reviews.html" style="font-size:0.8rem;color:var(--gold);margin-left:12px;">Оставить отзыв</a>
+          <a href="{{ route("rewiews") }}" style="font-size:0.8rem;color:var(--gold);margin-left:12px;">Оставить отзыв</a>
         </div>
         @endforeach
       </div>
 
       
-      <div class="cabinet-card" id="notifications">
+      <div class="cabinet-card active-section" id="notifications" style="display: none;">
         <h2 class="cabinet-card__title">Уведомления</h2>
         <div style="display:flex;flex-direction:column;gap:12px;">
           @foreach ($notifications as $notification)
@@ -111,7 +114,7 @@
       </div>
 
       
-      <div class="cabinet-card" id="profile">
+      <div class="cabinet-card active-section" id="profile" style="display: none;">
         <h2 class="cabinet-card__title">Профиль</h2>
         <div class="form-row">
           <div class="form-group"><label class="form-label">Имя</label><input type="text" class="form-input" value="{{ $user->username }}"></div>
@@ -129,4 +132,21 @@
 
 <div style="height:48px;background:var(--cream);"></div>
 
+@endsection
+@section("scripts")
+<script>
+  const sections = document.querySelectorAll(".active-section");
+  const buttons  = document.querySelectorAll(".filter-btn");
+  let i = 0;
+  buttons.forEach(el => {
+    let g = i;
+    el.onclick = () => {
+      sections.forEach(el => {
+        el.style.display = "none";
+      })
+      sections[g].style.display = "";
+    };
+    i++;
+  })
+</script>
 @endsection

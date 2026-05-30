@@ -4,11 +4,10 @@
         <a href="{{ $paginator->previousPageUrl() }}" class="page-btn">Назад</a>
     @endif
     @foreach ($elements as $element)
-        <a class="page-btn">2</a>
         @if(is_array($element))
             @foreach ($element as $page => $url)
                 @if($page == $paginator->currentPage())
-                    <span class="page-btn page-btn--active">1</span>
+                    <span class="page-btn page-btn--active">{{ $page }}</span>
                 @else
                     <a href="{{ $url }}" class="page-btn">{{ $page }}</a>
                 @endif

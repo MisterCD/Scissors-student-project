@@ -20,7 +20,7 @@ class MainCOntroller extends Controller
         $Products = self::getLimitedData("product", "popular", "desc", 4);
         $Workers = DB::table("workers")->orderBy("id", "desc")->limit(4)->join("users", "workers.user_id", "=", "users.id")->get();
         $News = self::getLimitedData("news", "id", "desc", 4);
-        $Rewiews = DB::table("rewiews")->orderBy("id", "desc")->limit(3)->join("users", "rewiews.user_id", "=", "Users.id")->get();
+        $Rewiews = DB::table("rewiews")->orderBy("id", "desc")->limit(3)->join("users", "rewiews.user_id", "=", "users.id")->get();
         $stars = DB::table("rewiews")->select("stars")->get();
         return view("main", ["Products" => $Products, "Workers" => $Workers, "News" => $News, "Rewiews"=>$Rewiews, "stars"=>$stars]);
     }
@@ -57,13 +57,14 @@ class MainCOntroller extends Controller
     public function menu_get(Request $request){
         $types = DB::table("type")->get();
         $Products = null;
+        $Workers = DB::table("workers")->join("users", "users.id", "=", "workers.user_id")->get();
         $type = $request->get("type");
         if($type != null){
             $Products = DB::table("product")->where(["type_id" => $type])->paginate(8);
         }else{
             $Products = DB::table("product")->paginate(8);
         }
-        return view("menu", ["Products"=>$Products, "types" => $types]);
+        return view("menu", ["Products"=>$Products, "types" => $types, "Workers" => $Workers]);
     }
     public function booking_get(){
         $workers = DB::table("workers")->join("users", "workers.user_id", "=", "users.id")->get();

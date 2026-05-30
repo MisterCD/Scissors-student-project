@@ -92,7 +92,7 @@
       <p class="cta-section__sub">Запишитесь к любому из наших мастеров онлайн</p>
     </div>
     <div class="cta-section__actions">
-      <a href="booking.html" class="btn btn--white">Записаться онлайн</a>
+      <a href="{{route("booking")}}" class="btn btn--white">Записаться онлайн</a>
       <a href="tel:+79001234567" class="btn btn--outline-white">📞 Позвонить</a>
     </div>
   </div>
