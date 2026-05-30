@@ -129,12 +129,6 @@
         </button>
       </form>
 
-
-          <div style="background:var(--charcoal);border-radius:var(--radius-lg);padding:20px;text-align:center;">
-          <p style="font-size:0.8rem;color:rgba(255,255,255,0.4);margin-bottom:8px;">Предпочитаете звонок?</p>
-          <a href="tel:+79001234567" class="btn btn--white btn--block">📞 +7 (900) 123-45-67</a>
-        </div>
-
       </div>
     </div>
   </div>

@@ -287,10 +287,6 @@ class RegisterController extends Controller
             return $redirect;
         }
         $id = session("user_id");
-        if(request("worker_id") != "any"){
-            VALIDATION->add("worker_id", ["required" => "Выберите мастера", 
-                                  "integer"  => "id должно быть числом"]);
-        }
         Booking::validate_rule();
         $result = Booking::validate();
         $result["user_id"] = $id;
@@ -311,5 +307,17 @@ class RegisterController extends Controller
         $result["date"] = Date::now();
         Rewiew::insert($result);
         return redirect()->route("rewiews");
+    }
+    public function changeBooking_post(){
+        $redirect = $this->checkAuth();
+        if ($redirect !== null) {
+            return $redirect;
+        }      
+    }
+    public function changeBookingPage_get(){
+        $redirect = $this->checkAuth();
+        if ($redirect !== null) {
+            return $redirect;
+        }
     }
 }

@@ -218,7 +218,7 @@
   </div>
 </aside>
 
-<!-- MAIN -->
+
 <div class="adm-main">
   <header class="adm-topbar">
     <span class="adm-topbar__title">@yield('page-title', 'Панель управления')</span>

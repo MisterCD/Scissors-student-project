@@ -40,21 +40,41 @@
 @endsection
 @section("scripts")
   <script>
-    
+    buttons = document.querySelectorAll(".filter-btn");
     star5.onclick = () => {
+      buttons.forEach(el => {
+        el.className = "filter-btn";
+      })
         stars.value = 5;
+        star5.className = "filter-btn filter-btn--active";
     }
     star4.onclick = () => {
+       buttons.forEach(el => {
+        el.className = "filter-btn";
+      })
         stars.value = 4;
+        star4.className = "filter-btn filter-btn--active";
     }
     star3.onclick = () => {
+       buttons.forEach(el => {
+        el.className = "filter-btn";
+      })
         stars.value = 3;
+        star3.className = "filter-btn filter-btn--active"
     }
     star2.onclick = () => {
+       buttons.forEach(el => {
+        el.className = "filter-btn";
+      })
         stars.value = 2;
+        star2.className = "filter-btn filter-btn--active"
     }
     star1.onclick = () => {
+       buttons.forEach(el => {
+        el.className = "filter-btn";
+      })
         stars.value = 1;
+        star1.className = "filter-btn filter-btn--active"
     }
     const stars_form = document.querySelectorAll(".star-input");
     let i = 0;

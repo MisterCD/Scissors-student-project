@@ -100,6 +100,7 @@ input, button, select, textarea {
   color: var(--white);
   border-color: var(--charcoal);
 }
+
 .btn--primary:hover {
   background: var(--charcoal-soft);
   transform: translateY(-1px);
@@ -135,6 +136,7 @@ input, button, select, textarea {
   color: var(--white);
   border-color: var(--gold);
 }
+
 .btn--gold:hover {
   background: var(--gold-light);
   transform: translateY(-1px);

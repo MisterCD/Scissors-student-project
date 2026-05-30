@@ -50,7 +50,7 @@ class MainCOntroller extends Controller
     }
     public function rewiews_get(){
         $types = DB::table("type")->get();
-        $rewiews = DB::table("rewiews")->join("users", "rewiews.user_id", "=", "Users.id")->join("product", "rewiews.product_id", "=", "product.id")->paginate(6);
+        $rewiews = DB::table("rewiews")->join("users", "rewiews.user_id", "=", "Users.id")->join("product", "rewiews.product_id", "=", "product.id")->select("rewiews.*", "users.avatar", "users.username", "product.name")->paginate(6);
         $products = DB::table("product")->select("id", "name")->get();
         return view("rewiews", ["rewiews"=>$rewiews, "types"=>$types, "Products" => $products]);
     }
