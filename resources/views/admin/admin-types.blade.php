@@ -41,7 +41,7 @@
   </div>
 
   <div style="display:flex;flex-direction:column;gap:16px">
-    <!-- ADD TYPE -->
+      
     <div class="adm-card">
       <div class="adm-card__head"><span class="adm-card__title">Добавить тип</span></div>
       <div class="adm-card__body">
@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <!-- EDIT TYPE -->
+      
     <div class="adm-card" id="edit-type-card" style="display:none">
       <div class="adm-card__head">
         <span class="adm-card__title">Редактировать тип</span>

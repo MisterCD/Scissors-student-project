@@ -542,8 +542,6 @@
   margin-bottom: 9px; align-items: flex-start;
 }
 .sb-info-row:last-child { margin-bottom: 0; }
-
-/* Table of contents (CSS only) */
 .toc {
   background: var(--cream);
   border: 1px solid var(--border);
@@ -579,7 +577,6 @@
   flex-shrink: 0;
 }
 
-/* Countdown timer (CSS only — visual) */
 .countdown {
   background: linear-gradient(135deg,#1a1a1a,#2d2d2d);
   border-radius: var(--radius-lg);
@@ -617,7 +614,6 @@
   padding-top: 8px;
 }
 
-/* ── RESPONSIVE ──────────────────────────────── */
 @media(max-width:900px){
   .art-layout { grid-template-columns: 1fr; }
   .art-sidebar { position: static; }
@@ -631,7 +627,7 @@
   .art-hero__title { font-size: 2rem; }
 }
 </style>
-<!-- BREADCRUMB -->
+  
 <div class="breadcrumb">
   <div class="container breadcrumb__inner">
     <a href="{{ route("main") }}">Главная</a><span class="breadcrumb__sep">›</span>
@@ -640,7 +636,7 @@
   </div>
 </div>
 
-<!-- HERO -->
+  
 <section class="art-hero">
   <div class="container art-hero__inner">
     <h1 class="art-hero__title">
@@ -652,17 +648,17 @@
   </div>
 </section>
 
-<!-- COVER IMAGE -->
+  
 <div class="art-cover">🎨</div>
 
-<!-- MAIN CONTENT -->
+  
 <section class="section" style="background:var(--cream);padding-top:48px;">
   <div class="container art-layout">
     
   </div>
 </section>
 
-<!-- CTA -->
+  
 <section class="cta-section">
   <div class="container cta-section__inner">
     <div class="cta-section__text">

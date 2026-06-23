@@ -11,7 +11,9 @@ use const App\Library\VALIDATION;
 
 
 
-
+const STATUS_PANDING = 0;
+const STATUS_CONFIRMED = 1;
+const STATUS_CANCELED = 2;
 
 
 const USER_STATUS_USER   = 0;
@@ -58,21 +60,17 @@ class AdminController extends Controller
         }
 
         $user = DB::table("users")->where("id", $userId)->first();
-        /*
         if ($user === null || $user->status_id !== USER_STATUS_ADMIN) {
             return redirect()->route("main");
         }
-        */
         return null;
     }
 
-    // =================== ADMIN GET ===================
-
     public function admin_get(Request $request)
     {
-        $redirect = $this->checkAdmin();
+        /*$redirect = $this->checkAdmin();
         if ($redirect !== null) return $redirect;
-
+        */
         $type = $request->get("type", "products");
 
         switch ($type) {
@@ -171,7 +169,7 @@ class AdminController extends Controller
         }
     }
 
-    // =================== PRODUCTS ===================
+   
 
     public function createProduct_post(Request $request)
     {
@@ -294,7 +292,7 @@ class AdminController extends Controller
         return redirect()->route("admin:admin", ["type" => "types"])->with("success_message", "Тип обновлён");
     }
 
-    // =================== WORKERS ===================
+  
 
     public function createWorker_post(Request $request)
     {
@@ -401,7 +399,7 @@ class AdminController extends Controller
         return redirect()->route("admin:admin", ["type" => "rewiews"])->with("success_message", "Отзыв удалён");
     }
 
-    // =================== BOOKINGS ===================
+
 
     public function allowBooking_post(Request $request)
     {
@@ -412,7 +410,7 @@ class AdminController extends Controller
         if ($id === null) return redirect()->route("admin:admin", ["type" => "bookings"])->with("error_message", "ID не передан");
 
         try {
-            DB::table("booking")->where("id", $id)->update(["status" => "confirmed"]);
+            DB::table("booking")->where("id", $id)->update(["status" => STATUS_CONFIRMED]);
         } catch (\Throwable $th) {
             return redirect()->route("admin:admin", ["type" => "bookings"])->with("error_message", "Ошибка: " . $th->getMessage());
         }
@@ -429,7 +427,7 @@ class AdminController extends Controller
         if ($id === null) return redirect()->route("admin:admin", ["type" => "bookings"])->with("error_message", "ID не передан");
 
         try {
-            DB::table("booking")->where("id", $id)->update(["status" => "cancelled"]);
+            DB::table("booking")->where("id", $id)->update(["status" => STATUS_CANCELED]);
         } catch (\Throwable $th) {
             return redirect()->route("admin:admin", ["type" => "bookings"])->with("error_message", "Ошибка: " . $th->getMessage());
         }
@@ -454,13 +452,11 @@ class AdminController extends Controller
         return redirect()->route("admin:admin", ["type" => "bookings"])->with("success_message", "Запись удалена");
     }
 
-    // =================== USERS ===================
-
     public function changeUserRole_post(Request $request)
     {
         $redirect = $this->checkAdmin();
         if ($redirect !== null) return $redirect;
-
+        
         $id   = $request->get("id", null);
         $role = $request->get("role", null);
 
@@ -513,7 +509,7 @@ class AdminController extends Controller
         return redirect()->route("admin:admin", ["type" => "users"])->with("success_message", "Пользователь удалён");
     }
 
-    // =================== GALLERY ===================
+    
 
     public function uploadImage_post(Request $request)
     {
@@ -584,8 +580,6 @@ class AdminController extends Controller
 
         return redirect()->route("admin:admin", ["type" => "gallery"])->with("success_message", "Изображение удалено");
     }
-
-    // =================== NEWS ===================
 
     public function createNews_post(Request $request)
     {

@@ -28,7 +28,6 @@
     a { color: inherit; text-decoration: none; }
     input, button, select, textarea { font-family: var(--font-body); font-size: 1rem; outline: none; border: none; background: none; }
 
-    /* ===== SIDEBAR ===== */
     .adm-sidebar {
       width: 240px; min-height: 100vh; background: var(--charcoal);
       display: flex; flex-direction: column; position: fixed; top: 0; left: 0; z-index: 100;
@@ -59,7 +58,7 @@
     }
     .adm-sidebar__back:hover { color: var(--white); }
 
-    /* ===== MAIN CONTENT ===== */
+      
     .adm-main { margin-left: 240px; flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
     .adm-topbar {
       background: var(--white); border-bottom: 1px solid var(--border);
@@ -71,7 +70,7 @@
 
     .adm-content { padding: 32px; flex: 1; }
 
-    /* ===== ALERTS ===== */
+      
     .adm-alert {
       padding: 14px 18px; border-radius: var(--radius); margin-bottom: 20px;
       font-size: 0.9rem; display: flex; align-items: center; gap: 10px;
@@ -79,7 +78,7 @@
     .adm-alert--success { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
     .adm-alert--error   { background: #fdecea; color: #c62828; border: 1px solid #ef9a9a; }
 
-    /* ===== CARDS / TABLES ===== */
+      
     .adm-card { background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--border); overflow: hidden; margin-bottom: 24px; }
     .adm-card__head { padding: 18px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
     .adm-card__title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; }
@@ -91,7 +90,7 @@
     .adm-table tr:last-child td { border-bottom: none; }
     .adm-table tr:hover td { background: #faf8f4; }
 
-    /* ===== FORMS ===== */
+   
     .adm-form { display: flex; flex-direction: column; gap: 14px; }
     .adm-form__row { display: grid; gap: 14px; }
     .adm-form__row--2 { grid-template-columns: 1fr 1fr; }
@@ -105,7 +104,7 @@
     .adm-field input:focus, .adm-field select:focus, .adm-field textarea:focus { border-color: var(--gold); background: var(--white); }
     .adm-field textarea { min-height: 90px; resize: vertical; }
 
-    /* ===== BUTTONS ===== */
+
     .btn-adm {
       display: inline-flex; align-items: center; gap: 6px;
       padding: 9px 18px; border-radius: var(--radius); font-size: 0.85rem; font-weight: 500;
@@ -123,7 +122,7 @@
     .btn-adm--success { background: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
     .btn-adm--success:hover { background: #2e7d32; color: var(--white); }
 
-    /* ===== BADGES ===== */
+    
     .badge-adm { display: inline-block; padding: 3px 9px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
     .badge-adm--user    { background: #e3f2fd; color: #1565c0; }
     .badge-adm--master  { background: var(--gold-pale); color: #7d5c00; }
@@ -134,18 +133,18 @@
     .badge-adm--cancelled { background: #fdecea; color: #c62828; }
     .badge-adm--waiting   { background: #fff3e0; color: #e65100; }
 
-    /* ===== FILTERS ===== */
+  
     .adm-filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
     .adm-filter-btn { padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 500; border: 1.5px solid var(--border); color: var(--text-muted); cursor: pointer; transition: all var(--transition); background: var(--white); }
     .adm-filter-btn.active, .adm-filter-btn:hover { border-color: var(--gold); color: var(--charcoal); background: var(--gold-pale); }
 
-    /* ===== SEARCH ===== */
+   
     .adm-search { display: flex; align-items: center; gap: 0; }
     .adm-search input { padding: 8px 14px; border: 1.5px solid var(--border); border-right: none; border-radius: var(--radius) 0 0 var(--radius); font-size: 0.88rem; background: var(--cream-light); }
     .adm-search input:focus { border-color: var(--gold); outline: none; }
     .adm-search button { padding: 8px 14px; background: var(--charcoal); color: var(--white); border-radius: 0 var(--radius) var(--radius) 0; cursor: pointer; font-size: 0.85rem; }
 
-    /* ===== MODAL ===== */
+    
     .adm-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; }
     .adm-modal-overlay.open { display: flex; }
     .adm-modal { background: var(--white); border-radius: var(--radius-lg); padding: 28px; width: 100%; max-width: 500px; box-shadow: var(--shadow-lg); }
@@ -153,18 +152,18 @@
     .adm-modal__title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; }
     .adm-modal__close { cursor: pointer; color: var(--text-muted); font-size: 1.3rem; line-height: 1; background: none; border: none; }
 
-    /* ===== AVATAR ===== */
+   
     .adm-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; background: var(--gold-pale); }
 
-    /* ===== IMAGE PREVIEW ===== */
+    
     .adm-img-thumb { width: 60px; height: 60px; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--border); }
 
-    /* ===== EMPTY STATE ===== */
+   
     .adm-empty { text-align: center; padding: 48px; color: var(--text-muted); }
     .adm-empty__icon { font-size: 2.5rem; margin-bottom: 10px; }
     .adm-empty__text { font-size: 0.95rem; }
 
-    /* ===== STAT GRID ===== */
+   
     .adm-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
     .adm-stat { background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--border); padding: 20px 22px; }
     .adm-stat__num { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--charcoal); }
@@ -173,7 +172,7 @@
 </head>
 <body>
 
-<!-- SIDEBAR -->
+
 <aside class="adm-sidebar">
   <div class="adm-logo">
     <span class="adm-logo__icon">✂</span>

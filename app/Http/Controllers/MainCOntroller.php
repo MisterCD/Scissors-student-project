@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
-class MainCOntroller extends Controller
+class MainController extends Controller
 {
     
     private function getSingleData(string $table, $id){
@@ -19,7 +19,7 @@ class MainCOntroller extends Controller
     public function main_get(){
         $Products = self::getLimitedData("product", "popular", "desc", 4);
         $Workers = DB::table("workers")->orderBy("id", "desc")->limit(4)->join("users", "workers.user_id", "=", "users.id")->get();
-        $News = self::getLimitedData("news", "id", "desc", 4);
+        $News = self::getLimitedData("news", "id", "desc", 3);
         $Rewiews = DB::table("rewiews")->orderBy("id", "desc")->limit(3)->join("users", "rewiews.user_id", "=", "users.id")->get();
         $stars = DB::table("rewiews")->select("stars")->get();
         return view("main", ["Products" => $Products, "Workers" => $Workers, "News" => $News, "Rewiews"=>$Rewiews, "stars"=>$stars]);

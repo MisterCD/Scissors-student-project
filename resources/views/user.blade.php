@@ -9,7 +9,9 @@
         @if($user->avatar === "")
             <div class="cabinet-avatar">Нет</div>
         @else
-            <img src="{{$user->avatar}}">
+        <div class="cabinet-avatar">
+            <img src="{{ asset("storage/".$user->avatar)}}">
+        </div>
         @endif
         <div class="cabinet-user__name">{{ $user->username }}</div>
         <div class="cabinet-user__email">{{ $user->email }}</div>
@@ -57,7 +59,7 @@
               </div>
             </div>
             <div style="display:flex;gap:8px;">
-              <a href="{{ route("changeBooking") }}" class="action-btn">Изменить</a>
+              <a href="{{ route("changeBookingPage", ["id" => $booking->id]) }}" class="action-btn">Изменить</a>
             </div>
           </div>
         </div>
@@ -116,6 +118,10 @@
       <div class="cabinet-card active-section" id="profile" style="display: none;">
         <h2 class="cabinet-card__title">Профиль</h2>
         <form method="post" action="{{ route("changeUser") }}">
+          @csrf
+          @error("username")
+          <span style="color:var(--error);">{{ $message }}</span>
+          @enderror
            <div class="form-row">
             <input hidden type="number" name="type" value="0">
               <div class="form-group"><label class="form-label">Имя</label><input type="text" name="username" class="form-input" value="{{ $user->username }}"></div>
@@ -123,6 +129,10 @@
            </div>
         </form>
         <form method="post" action="{{ route("changeUser") }}">
+          @csrf
+          @error("tel")
+          <span style="color:var(--error);">{{ $message }}</span>
+          @enderror
         <div class="form-row">
           <input hidden type="number" name="type" value="4">
           <div class="form-group"><label class="form-label">Телефон</label><input type="tel" name="tel" class="form-input" value="{{ $user->tel }}"></div>
@@ -130,23 +140,34 @@
         </div>
         </form>
         <form method="post" action="{{ route("changeUser") }}">
+          @csrf
+          @error("email")
+          <span style="color:var(--error);">{{ $message }}</span>
+          @enderror
           <div class="form-row">
             <input hidden type="number" name="type" value="1">
              <div class="form-group"><label class="form-label">Email</label><input type="email" name="email" class="form-input" value="{{ $user->email }}"></div>
              <button class="btn btn--sm">Сохранить изменения</button>
           </div>
         </form>
-        <form method="post" action="{{ route("changeUser") }}">
+        <form method="post" action="{{ route("changeUser") }}" >
+          @csrf
+          @error("password")
+          <span style="color:var(--error);">{{ $message }}</span>
+          @enderror
           <div class="form-row">
             <input hidden type="number" name="type" value="2">
              <div class="form-group"><label class="form-label">Пароль</label><input type="password" name="password_old" placeholder="Старый пароль" class="form-input"><input style="margin-top: 10px;" type="password" name="password" placeholder="Новый пароль" class="form-input"></div>
              <button class="btn btn--sm">Сохранить изменения</button>
           </div>
         </form>
-        <form method="post" action="{{ route("changeAvatar") }}">
+        <form method="post" action="{{ route("changeAvatar") }}" enctype="multipart/form-data">
+          @csrf
+          @error("avatar")
+          <span style="color:var(--error);">{{ $message }}</span>
+          @enderror
           <div class="form-row">
-            <input hidden type="number" name="type" value="3">
-             <div class="form-group"><label class="form-label">Аватар</label><input type="file" class="form-input" value="{{ $user->email }}"></div>
+             <div class="form-group"><label class="form-label">Аватар</label><input name="avatar" type="file" class="form-input" value="{{ $user->email }}"></div>
              <button class="btn btn--sm">Сохранить изменения</button>
           </div>
         </form>

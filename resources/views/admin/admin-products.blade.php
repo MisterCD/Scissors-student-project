@@ -42,7 +42,7 @@
   </div>
 </div>
 
-<!-- MODAL: ADD PRODUCT -->
+
 <div class="adm-modal-overlay" id="modal-add-product">
   <div class="adm-modal" style="max-width:600px">
     <div class="adm-modal__head">
@@ -92,7 +92,7 @@
   </div>
 </div>
 
-<!-- MODAL: EDIT PRODUCT -->
+  
 <div class="adm-modal-overlay" id="modal-edit-product">
   <div class="adm-modal" style="max-width:600px">
     <div class="adm-modal__head">

@@ -44,50 +44,13 @@
     <div class="booking-layout">
 
 
-      <form class="booking-form" action="{{ route("createBooking") }}" method="post">
+      <form class="booking-form" action="{{ route("changeBooking") }}" method="post">
         @csrf
-        <h2 class="form-title">Форма записи</h2>
-        <div class="form-section">
-          <div class="form-section__title">1. Выберите услугу</div>
-          @error("product_id")
-           <span style="color:var(--error);">{{ $message }}</span>
-          @enderror
-          <div class="form-group">
-            <label class="form-label">Услуга *</label>
-            <select class="form-select" name="product_id">
-              <option value="">— Выберите услугу —</option>
-              @foreach ($Products as $product)
-                <option value="{{ $product->id }}">{{ $product->name }}</option>
-              @endforeach
-            </select>
-          </div>
-        </div>
+        <input type="number" name="id" value="{{ $booking->id }}" hidden>
+        <h2 class="form-title">Изменить запись</h2>
 
 
-        <div class="form-section">
-          <div class="form-section__title">2. Выберите мастера</div>
-          @error("worker_id")
-           <span style="color:var(--error);">{{ $message }}</span>
-          @enderror
-          <div class="masters-radio">
-            <label class="master-radio">
-              <input type="radio" name="worker_id" value="any" checked>
-              <span class="master-radio-label">
-                <span class="master-mini-avatar" style="background:var(--gold);">✂</span>
-                <span><span class="master-mini-name">Любой мастер</span><span class="master-mini-spec" style="display:block;">Первый свободный</span></span>
-              </span>
-            </label>
-            @foreach ($workers as $worker)
-              <label class="master-radio">
-              <input type="radio" name="worker_id" value="{{ $worker->user_id }}">
-              <span class="master-radio-label">
-                <span class="master-mini-avatar" style="background:var(--gold);">✂</span>
-                <span><span class="master-mini-name">{{ $worker->username }}</span></span>
-              </span>
-            </label>
-            @endforeach
-          </div>
-        </div>
+        
         <div class="form-section">
           <div class="form-section__title">3. Дата и время</div>
           @error("date")
@@ -99,24 +62,12 @@
           <div class="form-row">
             <div class="form-group">
               <label class="form-label">Дата *</label>
-              <input type="date" class="form-input" name="date" value="2026-05-15">
+              <input type="date" class="form-input" name="date" value="{{ $booking->date }}">
             </div>
             <div class="form-group">
               <label class="form-label">Время *</label>
-              <input type="time" class="form-input" name="time" value="2026-05-15">
+              <input type="time" class="form-input" name="time" value="{{ $booking->time }}">
             </div>
-          </div>
-        </div>
-
-
-        <div class="form-section">
-          <div class="form-section__title">4. Комментарий</div>
-          @error("description")
-           <span style="color:var(--error);">{{ $message }}</span>
-          @enderror
-          <div class="form-group">
-            <label class="form-label">Пожелания (необязательно)</label>
-            <textarea class="form-textarea" name="description" placeholder="Опишите желаемый результат, укажите особые пожелания..."></textarea>
           </div>
         </div>
         @if($errors->any())
@@ -125,8 +76,14 @@
           @endforeach
         @endif
         <button class="btn btn--primary btn--block" style="font-size:1rem;padding:16px;">
-          Подтвердить запись
+          Изменить запись
         </button>
+      </form>
+      <form class="booking-form" action="{{ route("deleteUserBooking") }}" method="post">
+        @csrf
+        <input type="number" name="id" value="{{ $booking->id }}" hidden>
+        <span>Удалить запись?</span>
+        <button>Удалить</button>
       </form>
 
       </div>

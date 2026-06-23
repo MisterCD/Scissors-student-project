@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MainCOntroller;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
 /*
@@ -14,9 +14,6 @@ use App\Http\Controllers\AdminController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-// GET - name_get
-// POST - name_post
 
 class RouteObject {
     private $classname;
@@ -45,7 +42,7 @@ class RouteObject {
 
 }
 
-$Main = new RouteObject(MainCOntroller::class);
+$Main = new RouteObject(MainController::class);
 $Admin = new RouteObject(AdminController::class, "/admin/", "admin:");
 $Auth = new RouteObject(RegisterController::class, "/auth/");
 
@@ -69,6 +66,9 @@ $Auth->post_by_name("loginUser");
 $Auth->get_by_name("logoutUser");
 $Auth->get_by_name("user");
 $Auth->get_by_name("login");
+$Auth->get_by_name("changeBookingPage");
+$Auth->post_by_name("changeBooking");
+$Auth->post_by_name("deleteUserBooking");
 $Admin->get_by_name("admin");
 $Admin->post_by_name("createProduct");
 $Admin->post_by_name("deleteProduct");

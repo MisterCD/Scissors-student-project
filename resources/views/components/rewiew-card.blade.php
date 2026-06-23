@@ -8,7 +8,7 @@
         <p class="review-card__text">«{{ $rewiew->description }}»</p>
         <div class="review-card__author"><span class="review-card__avatar">
           @if($rewiew->avatar != "")
-             <img src="{{ $rewiew->avatar }}">
+             <img src="{{ asset("storage/".$rewiew->avatar) }}">
           @else
              Нет
           @endif

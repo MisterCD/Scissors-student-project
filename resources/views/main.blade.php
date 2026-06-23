@@ -73,14 +73,14 @@
       <div class="promo-item">
         <span class="promo-item__icon">🎁</span>
         <div>
-          <strong>Акция!</strong> {{ $event->title }}
+          <strong>Акция!</strong> {{ $event->name }}
         </div>
       </div>
       @else($event->type_id == 2)
       <div class="promo-item">
         <span class="promo-item__icon">⭐</span>
         <div>
-          <strong>Специальное предложение</strong> — {{ $event->title }}
+          <strong>Специальное предложение</strong> — {{ $event->name }}
         </div>
       </div>
       @endif

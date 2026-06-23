@@ -180,7 +180,7 @@ class RegisterController extends Controller
         $result = User::change($type);
         $user = DB::table("users")->where("id", $id)->first();
 
-        return view("user", [
+        return redirect()->route("user", [
             "user"            => $user,
             "success_message" => $result['success'],
             "error_message"   => $result['error'],
@@ -276,7 +276,7 @@ class RegisterController extends Controller
         }
 
         $user = DB::table("users")->where("id", $id)->first();
-        return view("user", [
+        return redirect()->route("user", [
             "user"            => $user,
             "success_message" => "Аватар успешно обновлён",
         ]);
@@ -312,12 +312,47 @@ class RegisterController extends Controller
         $redirect = $this->checkAuth();
         if ($redirect !== null) {
             return $redirect;
-        }      
+        }
+        $id = request("id");      
+        VALIDATION->add("time",        ["required" => "Выберите время", 
+                                        "date_format" => "Поле должно быть временем"], ["date_format" => "H:i"]);
+        VALIDATION->add("date",        ["required" => "Поля даты обязаельно", 
+                                        "date"     => "Поле должно быть датой", 
+                                        "after" => "Дата не должна быть в прошлом"], 
+                                       ["after" => "today"]);
+        $result = VALIDATION->validate_and_clear();
+        Booking::where("id", $id)->update($result);
+        return redirect()->route("user");
     }
     public function changeBookingPage_get(){
         $redirect = $this->checkAuth();
         if ($redirect !== null) {
             return $redirect;
         }
+        $id = request("id");
+        $booking = Booking::find($id);
+        return view("booking_change", ["booking" => $booking]);
+    }
+    public function deleteUserBooking_post(Request $request)
+    {
+        $user_id = session("user_id");
+        if($user_id == null){
+            return redirect()->route("login");
+        }
+        $id = $request->get("id", null);
+        if ($id === null) return redirect()->route("admin:admin", ["type" => "bookings"])->with("error_message", "ID не передан");
+
+        try {
+            $booking = DB::table("booking")->where("id", $id)->get();
+            if($booking->user_id == $user_id){
+                DB::table("booking")->where("id", $id)->delete();
+            }else{
+                return redirect()->route("admin:admin", ["type" => "bookings"])->with("error_message", "Ошибка: Вы не являетесь владельем этой записи");
+            } 
+        } catch (\Throwable $th) {
+            return redirect()->route("admin:admin", ["type" => "bookings"])->with("error_message", "Ошибка: " . $th->getMessage());
+        }
+
+        return redirect()->route("admin:admin", ["type" => "bookings"])->with("success_message", "Запись удалена");
     }
 }

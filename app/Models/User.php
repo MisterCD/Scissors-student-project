@@ -107,7 +107,6 @@ class User extends Model
     }
     public static function change(int $type){
         $id   = session("user_id");
-        $result        = VALIDATION->validate_and_clear();
         $successMessage = "";
         $errorMessage   = "";
         if ($type === PASSWORD) {
@@ -121,6 +120,7 @@ class User extends Model
                 ["min" => "6", "max" => "100"]
             );
         }
+        $result        = VALIDATION->validate_and_clear();
         switch ($type) {
             case USERNAME:
                 DB::table("users")->where("id", $id)->update(["username" => $result["username"]]);
